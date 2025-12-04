@@ -149,7 +149,7 @@ function renderSeats(snapshotVal) {
   const todayKey = ymdKST(nowKST());
   const isPastDate = activeDateKey < todayKey;
 
-  $seatLayout.classList.remove("room-106", "room-210", "room-114", "past-date");
+  $seatLayout.classList.remove("room-106", "room-210", "room-208", "past-date");
   $seatLayout.classList.add(`room-${activeRoom.replace('호', '')}`);
   if (isPastDate) $seatLayout.classList.add("past-date");
 
