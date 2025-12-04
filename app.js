@@ -1,5 +1,5 @@
 // ====== 설정 ======
-const ROOMS = ["210호", "106호", "114호"];
+const ROOMS = ["210호", "106호", "208호"];
 
 const SEATS_BY_ROOM = {
   "210호": Array.from({ length: 35 }, (_, i) => String(i + 1)),
@@ -29,7 +29,7 @@ const fixedSeatsByRoom = {
   "106호": {
 
 },
-  "114호": {}
+  "208호": {}
 };
 
 // 야작 금지 인원 설정
