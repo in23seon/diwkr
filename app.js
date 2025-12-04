@@ -10,25 +10,23 @@ const SEATS_BY_ROOM = {
 // 고정 좌석 설정
 const fixedSeatsByRoom = {
   "210호": {
-"1": "이채은",
-"5": "김지민",
-"8": "장수선",
-"11": "이현두",
-"12": "임호빈",
-"19": "장아라",
-"20": "이수빈",
-"21": "박신형",
-"22": "김미서",
-"23": "이현아",
-"24": "장시은",
-"25": "박지혜",
-"30": "전창훈",
-"33": "김민규",
-"34": "윤성주",
-},
-  "106호": {
-
-},
+    "1": "이채은",
+    "5": "김지민",
+    "8": "장수선",
+    "11": "이현두",
+    "12": "임호빈",
+    "19": "장아라",
+    "20": "이수빈",
+    "21": "박신형",
+    "22": "김미서",
+    "23": "이현아",
+    "24": "장시은",
+    "25": "박지혜",
+    "30": "전창훈",
+    "33": "김민규",
+    "34": "윤성주",
+  },
+  "106호": {},
   "208호": {}
 };
 
@@ -96,7 +94,6 @@ const $activeRoomDisplay = document.getElementById("activeRoomDisplay");
 const $confirmationModal = document.getElementById("confirmationModal");
 const $confirmationMessage = document.getElementById("confirmationMessage");
 const $confirmationCloseBtn = document.getElementById("confirmationCloseBtn");
-// ▼ 추가된 부분
 const $openChatLinkContainer = document.getElementById("openChatLinkContainer");
 
 
@@ -149,7 +146,10 @@ function renderSeats(snapshotVal) {
   const todayKey = ymdKST(nowKST());
   const isPastDate = activeDateKey < todayKey;
 
+  // [수정 완료] 기존 room-114 삭제 코드를 room-208 삭제 코드로 변경
+  // 이렇게 해야 다른 방 탭을 눌렀다가 돌아올 때 CSS 클래스가 꼬이지 않습니다.
   $seatLayout.classList.remove("room-106", "room-210", "room-208", "past-date");
+  
   $seatLayout.classList.add(`room-${activeRoom.replace('호', '')}`);
   if (isPastDate) $seatLayout.classList.add("past-date");
 
@@ -257,7 +257,6 @@ async function submitBooking() {
   showConfirmationModal(profileName);
 }
 
-// ▼ 수정된 부분: 예약 조회 함수
 async function searchReservation() {
   const name = $searchName.value.trim();
   const sid = $searchStudentId.value.trim();
@@ -292,7 +291,6 @@ async function searchReservation() {
     return;
   }
 
-  // ▼ 조회 성공 시에만 링크를 표시
   $openChatLinkContainer.innerHTML = `
     <a href="https://open.kakao.com/o/gS1ZZ8gh" target="_blank" rel="noopener noreferrer" style="color: #3498db; font-weight: bold; text-decoration: none;">
       ▶ 야작 오픈 채팅방 바로가기
